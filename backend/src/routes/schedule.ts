@@ -4,10 +4,7 @@ import db from "../db";
 
 const router = express.Router();
 
-/**
- * POST /message/schedule
- * Body: { team_id, channel, text, send_at (ISO string) }
- */
+
 router.post("/message/schedule", (req: Request, res: Response) => {
   const { team_id, channel, text, send_at } = req.body;
 

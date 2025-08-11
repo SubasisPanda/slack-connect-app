@@ -2,7 +2,6 @@
 import express, { Request, Response } from "express";
 import db from "../db";
 
-// Define row type
 interface ScheduledMessageRow {
   id: number;
   team_id: string;
@@ -14,11 +13,7 @@ interface ScheduledMessageRow {
 
 const router = express.Router();
 
-/**
- * GET /message/scheduled
- * Query: team_id
- * Returns all unsent scheduled messages for a team
- */
+
 router.get("/message/scheduled", (req: Request, res: Response) => {
   const team_id = req.query.team_id as string;
   if (!team_id) return res.status(400).json({ error: "Missing team_id" });
@@ -30,10 +25,7 @@ router.get("/message/scheduled", (req: Request, res: Response) => {
   res.json({ scheduled: rows });
 });
 
-/**
- * DELETE /message/cancel/:id
- * Cancels a scheduled message by marking it as sent=1 (won't be processed)
- */
+
 router.delete("/message/cancel/:id", (req: Request, res: Response) => {
   const idParam = req.params.id;
   if (!idParam) return res.status(400).json({ error: "Missing message ID" });

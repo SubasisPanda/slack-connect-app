@@ -4,7 +4,6 @@ import db from "./db";
 import { getValidAccessToken } from "./slackAuth";
 import { postMessage } from "./slackApi";
 
-// Define row type
 interface ScheduledMessageRow {
   id: number;
   team_id: string;
@@ -19,7 +18,6 @@ cron.schedule("* * * * *", async () => {
 
   const now = Math.floor(Date.now() / 1000);
 
-  // Cast the results so TS knows the shape
   const rows = db.prepare("SELECT * FROM scheduled_messages WHERE sent = 0 AND send_at <= ?")
     .all(now) as ScheduledMessageRow[];
 

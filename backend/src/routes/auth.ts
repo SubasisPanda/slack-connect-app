@@ -46,7 +46,6 @@ router.get("/slack/callback", async (req: Request, res: Response) => {
             return res.status(400).json({ error: data.error });
         }
 
-        // Slack may not always return refresh_token, but we'll handle if it does
         const expiresIn = data.expires_in || 3600; // default 1 hour
         const expiresAt = Math.floor(Date.now() / 1000) + expiresIn;
 

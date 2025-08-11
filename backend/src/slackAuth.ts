@@ -22,7 +22,7 @@ export async function getValidAccessToken(team_id: string): Promise<string | nul
 
   const now = Math.floor(Date.now() / 1000);
   if (row.expires_at > now + 60) {
-    return row.access_token; // still valid
+    return row.access_token; 
   }
 
   if (!row.refresh_token) {

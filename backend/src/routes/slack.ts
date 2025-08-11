@@ -5,11 +5,7 @@ import { fetchChannels, postMessage } from "../slackApi";
 
 const router = express.Router();
 
-/**
- * GET /channels
- * Lists all channels for the connected Slack workspace
- * Query param: team_id
- */
+
 router.get("/channels", async (req: Request, res: Response) => {
   const team_id = req.query.team_id as string;
   if (!team_id) return res.status(400).json({ error: "Missing team_id" });
@@ -28,11 +24,7 @@ router.get("/channels", async (req: Request, res: Response) => {
   }
 });
 
-/**
- * POST /message/send
- * Sends a message immediately to a Slack channel
- * Body: { team_id, channel, text }
- */
+
 router.post("/message/send", async (req: Request, res: Response) => {
   const { team_id, channel, text } = req.body;
   if (!team_id || !channel || !text) {
